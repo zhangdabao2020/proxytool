@@ -1,0 +1,4 @@
+/bin/
+/IPv4/config.*
+/IPv6/config.*
+obj
