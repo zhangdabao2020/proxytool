@@ -6,7 +6,7 @@
       xmlns:xly="clr-namespace:Util.Controls;assembly=Util.Controls"
       mc:Ignorable="d" Background="#CCCCCC"
         WindowStyle="None"
-      Height="55" Width="240" >
+      Height="55" Width="130" >
     <Window.Resources>
         <Style TargetType="StackPanel">
             <Setter Property="Height" Value="50"/>
@@ -23,7 +23,7 @@
     <StackPanel Height="35">
         <Label MouseMove="TitleBar_MouseMove" Height="24" ContextMenu="{StaticResource ContextMenu}">代理：</Label>
         <xly:BulletCheckBox Height="24" Width="60" IsChecked="True" Cursor="Hand" Checked="BulletCheckBox_Checked" Unchecked="BulletCheckBox_unChecked"/>
-        <RadioButton Margin="3" x:Name="IPv4"  GroupName="group1" xly:ControlAttachProperty.FIconSize="20" IsChecked="True" Checked="RadioButton_Checked">IPv4</RadioButton>
-        <RadioButton Margin="3"  x:Name="IPv6"  GroupName="group1" xly:ControlAttachProperty.FIconSize="20" Checked="RadioButton_Checked">IPv6</RadioButton>
+        <!--<RadioButton Margin="3" x:Name="IPv4"  GroupName="group1" xly:ControlAttachProperty.FIconSize="20" IsChecked="True" Checked="RadioButton_Checked">IPv4</RadioButton>
+        <RadioButton Margin="3"  x:Name="IPv6"  GroupName="group1" xly:ControlAttachProperty.FIconSize="20" Checked="RadioButton_Checked">IPv6</RadioButton>-->
     </StackPanel>
 </Window>

@@ -16,8 +16,10 @@ namespace myNetwork
     {
         public static readonly DependencyProperty OpenCommandProperty =
          DependencyProperty.Register("OpenCommand", typeof(RoutedCommand), typeof(MainWindow), new PropertyMetadata(null));
-        public static string proxyServerAddress = "127.0.0.1";
-        public static string proxyServerPort = "10809";
+        public static string proxyServerAddress = "socks=127.0.0.1";
+        //public static string proxyServerAddress_v4 = "127.0.0.1";
+        //public static string proxyServerAddress_v6 = "0:0:0:0:0:0:0:1";
+        public static string proxyServerPort = "1080";
         private Process proIpv4 = null;
         private Process proIpv6 = null;
         private string netmodle = "ipv4";
@@ -44,10 +46,9 @@ namespace myNetwork
         {
             //打开代理
             NetworkTools myNetWorkTools = new NetworkTools();
-
-            myNetWorkTools.SetProxy(true, proxyServerAddress, proxyServerPort);
             if (netmodle == "ipv4")
             {
+                //proxyServerAddress = proxyServerAddress_v4;
                 if (proIpv4 == null)
                 {
                     ProcessStartInfo info = new ProcessStartInfo();
@@ -58,6 +59,7 @@ namespace myNetwork
             }
             else
             {
+                //proxyServerAddress = proxyServerAddress_v6;
                 if (proIpv6 == null)
                 {
                     ProcessStartInfo info = new ProcessStartInfo();
@@ -66,6 +68,8 @@ namespace myNetwork
                     proIpv6 = Process.Start(info);
                 }
             }
+            
+            myNetWorkTools.SetProxy(true, proxyServerAddress, proxyServerPort);
         }
         /// <summary>
         /// 取消选择事件
@@ -78,6 +82,7 @@ namespace myNetwork
             NetworkTools myNetWorkTools = new NetworkTools();
 
             myNetWorkTools.SetProxy(false, proxyServerAddress, proxyServerPort);
+
             if (proIpv4 != null)
             {
                 proIpv4.Kill();
@@ -101,6 +106,16 @@ namespace myNetwork
                 return;
             NetworkTools myNetWorkTools = new NetworkTools();
             string filepath = "";
+            if (btn.Name == "IPv4")
+            {
+                this.netmodle = "ipv4";
+                //proxyServerAddress = proxyServerAddress_v4;
+            }
+            else
+            {
+                this.netmodle = "ipv6";
+                //proxyServerAddress = proxyServerAddress_v6;
+            }
             bool proxyFlag = myNetWorkTools.GetProxy();
             if (!proxyFlag){
                 return;
@@ -112,10 +127,11 @@ namespace myNetwork
             {
                 this.netmodle = "ipv4";
                 if (proIpv6 != null)
-                {
+                {   
                     proIpv6.Kill();
                     proIpv6.WaitForExit();
                     proIpv6 = null;
+
                 }
                 if (proIpv4 == null)
                 {

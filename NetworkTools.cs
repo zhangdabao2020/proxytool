@@ -90,7 +90,7 @@ namespace myNetwork
             Process[] p_arry = Process.GetProcesses();//得到系统所有进程
             for (int i = 0; i < p_arry.Length; i++)//遍历每个进程
             {
-                if (p_arry[i].ProcessName == name)//发现有名为QQ的进程
+                if (p_arry[i].ProcessName == name)//
                 {
                     p_arry[i].Kill();//就结束它。
                     return;
